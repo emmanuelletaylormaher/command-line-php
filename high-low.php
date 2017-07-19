@@ -1,6 +1,11 @@
 <?php
 
+var_dump($argc);
+
+var_dump($argv);
+
 $randomNumber = rand(1, 100);
+$guessNumber = 0;
 // echo "{$randomNumber}\n";
 
 //Write the output
@@ -10,22 +15,23 @@ fwrite(STDOUT, 'Guess? ');
 
 do {
 	$userGuess = trim(fgets(STDIN));
-	$guessNumber = 0;
 	if (! is_numeric($userGuess)) {
 		echo "Hey! That's not a number!" . PHP_EOL;
 		continue;
 	}
 	if ($userGuess < $randomNumber) {
+		$guessNumber += 1;
 		echo "HIGHER" . PHP_EOL;
 	} else if ($userGuess > $randomNumber) {
 		echo "LOWER" . PHP_EOL;
 	} else if ($userGuess == $randomNumber) {
-		$guessNumber++;
+		// $guessNumber++;
+		$guessNumber += 1;
 		echo "GOOD GUESS!";
 		echo "You guessed {$guessNumber} times!\n";
 		exit;
 	}
-	$guessNumber = $guessNumber++;
+	$guessNumber += 1;
 	fwrite(STDOUT, 'Guess? ');
 } while ($userGuess !== $randomNumber);
 
