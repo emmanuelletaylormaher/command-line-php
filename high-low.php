@@ -22,9 +22,10 @@ do {
 	} else if ($userGuess == $randomNumber) {
 		$guessNumber++;
 		echo "GOOD GUESS!";
-		echo "You guessed {$guessNumber} times!";
+		echo "You guessed {$guessNumber} times!\n";
+		exit;
 	}
-	$guessNumber++;
+	$guessNumber = $guessNumber++;
 	fwrite(STDOUT, 'Guess? ');
 } while ($userGuess !== $randomNumber);
 
