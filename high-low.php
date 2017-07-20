@@ -1,10 +1,17 @@
 <?php
 
-var_dump($argc);
+if ($argc !== 3) {
+	echo "Please pass the minimum and maximum for game." .PHP_E0L;
+	echo PHP_EOL;
+	echo "Usage:" . PHP_EOL;
+	echo ' php high-low.php <min> <max>' . PHP_EOL;
+	die;
+}
 
-var_dump($argv);
+$min =$argv[1];
+$max =$argv[2];
 
-$randomNumber = rand(1, 100);
+$randomNumber = mt_rand($min, $max);
 $guessNumber = 0;
 // echo "{$randomNumber}\n";
 
@@ -23,6 +30,7 @@ do {
 		$guessNumber += 1;
 		echo "HIGHER" . PHP_EOL;
 	} else if ($userGuess > $randomNumber) {
+		$guessNumber += 1;
 		echo "LOWER" . PHP_EOL;
 	} else if ($userGuess == $randomNumber) {
 		// $guessNumber++;
@@ -31,10 +39,12 @@ do {
 		echo "You guessed {$guessNumber} times!\n";
 		exit;
 	}
-	$guessNumber += 1;
 	fwrite(STDOUT, 'Guess? ');
 } while ($userGuess !== $randomNumber);
 
+var_dump($argc);
+
+var_dump($argv);
 
 // if ($userGuess < $randomNumber) {
 // 	echo "HIGHER" . PHP_EOL;
